@@ -18,24 +18,26 @@ class Semaforo():
             try:
                 print(num,"en rojo")
             finally:
-                self.locked.release()
+                    self.locked.release()
 
-def func_conta(x):
-    for i in range(2):
+
+def func_conta(x,y):
+    for i in range(4):
         if(i%2==0):
             time_f = random.random()
             time.sleep(time_f)
             x.pasa("semaforo a")
-            x.para('semaforo b')
+            y.para('semaforo b')
             print("______________________")
         elif(i%2==1):
-            x.para("semaforo a")
-            x.pasa('semaforo b')
+            y.pasa("semaforo b")
+            x.para('semaforo a')
             print("______________________")
             #print(i)
 
 if __name__ =="__main__":
     semaforo = Semaforo()
-    for i in range(2):
-        tstart = threading.Thread(target=func_conta,args=(semaforo,))
+    semaforo2 = Semaforo()
+    for i in range(4):
+        tstart = threading.Thread(target=func_conta,args=(semaforo,semaforo2,))
         tstart.start()
