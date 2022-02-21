@@ -2,6 +2,7 @@ import random
 import time
 import threading
 class Semaforo():
+    color=''
     def __init__(self, conta=0):
         self.locked = threading.Lock()
         self.conta_send= conta
@@ -10,13 +11,15 @@ class Semaforo():
         self.locked.acquire()
 
         try:
-            print(num,"en verde")
+            color="verde"
+            print(num,"en ",color)
         finally:
             self.locked.release()
     def para(self,num):
             self.locked.acquire()
             try:
-                print(num,"en rojo")
+                color='rojo'
+                print(num,"en ",color)
             finally:
                     self.locked.release()
 
